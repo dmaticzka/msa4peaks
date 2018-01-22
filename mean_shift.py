@@ -15,16 +15,7 @@ Example:
 - mean_shift.py input.bed 200
 """
 
-# X = np.array([1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 20, 21, 22, 23, 24])
-"""
-X = []
-with open('test_2.bed', "r") as f:
-    for line in f:
-        line = line.strip().split()
-        if line[0]=="chrX":
-            X.append(int(line[1]))
-X = np.array(X)
-"""
+
 class Mean_Shift():
     def __init__(self, bandwidth):
         self.bandwidth = bandwidth
