@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import argparse
 import matplotlib.pyplot as plt
 import numpy as np
@@ -22,16 +24,7 @@ Example:
 
 """
 
-# X = np.array([1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 20, 21, 22, 23, 24])
-"""
-X = []
-with open('test_2.bed', "r") as f:
-    for line in f:
-        line = line.strip().split()
-        if line[0]=="chrX":
-            X.append(int(line[1]))
-X = np.array(X)
-"""
+
 class Mean_Shift():
     """ calcualtes the mean shift
     >>> a = Mean_Shift(3)
@@ -46,7 +39,6 @@ class Mean_Shift():
     def peak(self, data):
         # initializing an empty dictionary for centroids
         centroids = {}
-
         # setting the initial centroids
         for i in range(len(data)):
             # location and data at the centroids; key and value in a dictionary
@@ -61,7 +53,6 @@ class Mean_Shift():
                 Features = []
                 # storing the value at each location i.e. data we have at that location
                 centroid = centroids[i]
-
                 # Now we are going to iterate through the data
                 # and decide whether the features/data are within that bandwidth or not
                 for featuresset in data:
@@ -76,7 +67,6 @@ class Mean_Shift():
             unique_cent = sorted(set(new_centroids))
             # copying the centroids dictionary without taking the attributes
             prev_centroids = dict(centroids)
-
             # new centroids going to define as new dictionary
             # and defining when convergence is reached
             centroids = {}
