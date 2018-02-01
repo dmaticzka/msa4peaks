@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env pytest
 
 from mean_shift import Mean_Shift
 
