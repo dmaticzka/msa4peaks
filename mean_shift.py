@@ -3,7 +3,6 @@
 import argparse
 import matplotlib.pyplot as plt
 import numpy as np
-import doctest
 
 information = """
 Calculates the mean_shift/peaks for the given dataset.
@@ -15,7 +14,8 @@ Input:
 * Output_Graph file name (optional)
 
 Output:
-* bed6 file with new_centroids/peaks for the given data set. default name "output.bed".
+* bed6 file with new_centroids/peaks for the given data set.
+  default name "output.bed".
 * graph file, default name "graph.png".
 
 Example:
@@ -26,12 +26,6 @@ Example:
 
 
 class Mean_Shift():
-    """ calcualtes the mean shift
-    >>> a = Mean_Shift(3)
-    >>> x = [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 20, 21, 22, 23, 24]
-    >>> a.peak(x)
-    {0: array(3.0), 1: array(11.0), 2: array(22.0)}
-    """
 
     def __init__(self, bandwidth):
         self.bandwidth = bandwidth
@@ -49,14 +43,16 @@ class Mean_Shift():
             new_centroids = []
             # here we are going to cycle through our known centrods
             for i in centroids:
-                # Features list will have all the features/datapoints in our bandwidth
+                # Features list will have all the features/datapoints
+                # in our bandwidth
                 Features = []
-                # storing the value at each location i.e. data we have at that location
+                # storing the value at each location
+                # i.e. data we have at that location
                 centroid = centroids[i]
                 # Now we are going to iterate through the data
-                # and decide whether the features/data are within that bandwidth or not
+                # and decide whether the features/data are within
+                # that bandwidth or not
                 for featuresset in data:
-                    # print("second loop related to dictionary containing featureset", featuresset)
                     # calculates what will be in one cluster
                     if abs(featuresset - centroid) < self.bandwidth:
                         Features.append(featuresset)
@@ -78,22 +74,25 @@ class Mean_Shift():
                 if not np.array_equal(centroids[i], prev_centroids[i]):
                     convergence = False
                 # break out of the for loop
-                if convergence==False:
+                if not convergence:
                     break
             # break out of the while loop
-            if convergence==True:
+            if convergence:
                 break
         # finally the centroids are reset
-        # self.centroids = centroids
         return centroids
+
 
 def main():
     parser = argparse.ArgumentParser(description=information,
-                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+                                     formatter_class=argparse.
+                                     RawDescriptionHelpFormatter)
     parser.add_argument("dataFile", type=str, help='Enter the data file name')
     parser.add_argument("Bandwidth", type=int, help='Enter the bandwidth')
-    parser.add_argument("-o", "--output", default='output.bed', help='Enter the output data file name')
-    parser.add_argument("-g", "--graph", default="graph.png", help='Enter the output graph file name')
+    parser.add_argument("-o", "--output", default='output.bed',
+                        help='Enter the output data file name')
+    parser.add_argument("-g", "--graph", default="graph.png",
+                        help='Enter the output graph file name')
 
     Pars = parser.parse_args()
 
@@ -112,8 +111,6 @@ def main():
             if line[0] == "chrX":
                 X.append(int(line[1]))
     X = np.array(X)
-    # clf.peak(X)
-    # centroids = clf.centroids
     centroids = clf.peak(X)
     print("No. of Clusters : ", len(centroids))
 
@@ -121,11 +118,13 @@ def main():
     with open(Pars.output, "w") as wr:
         for c in centroids:
             end_pos.append((centroids[c] + 1))
-            cl = ("%s\t%s\t%s\t%s\t%s\t%s" % (chromosome, int(centroids[c]), int(end_pos[c]), name, score, strand))
+            cl = ("%s\t%s\t%s\t%s\t%s\t%s" % (chromosome, int(centroids[c]),
+                                              int(end_pos[c]),
+                                              name, score, strand))
             wr.write(cl + '\n')
             plt.plot(centroids[c], np.zeros_like(centroids[c]), 'X')
         plt.savefig(Pars.graph)
 
+
 if __name__ == "__main__":
-    doctest.testmod()
     main()
