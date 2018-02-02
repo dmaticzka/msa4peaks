@@ -65,7 +65,7 @@ class Mean_Shift():
                     if abs(featuresset - centroid) < self.bandwidth:
                         Features.append(featuresset)
                 # provides the mean as new_centroid
-                new_centroid = np.mean(Features)
+                new_centroid = np.around(np.mean(Features), decimals=1)
                 new_centroids.append(new_centroid)
             # calculating unique centroids we have got
             unique_cent = sorted(set(new_centroids))
