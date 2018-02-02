@@ -118,8 +118,8 @@ def main():
             line = line.strip().split()
             if line[0] == "chrX":
                 X.append(int(line[1]))
-    X = np.array(np.around(X, decimals=1)
-    centroids = clf.peak(X)
+    X = np.array(X)
+    centroids = clf.peak(np.around(X, decimals=1)
     print("No. of Clusters : ", len(centroids))
 
     plt.plot(X, np.zeros_like(X), 'ys')
