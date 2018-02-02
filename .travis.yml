@@ -38,5 +38,5 @@ script:
   # lint for python 3 compliance
   - pylint --py3k .
   # automatically find and execute tests
-  - pytest
+  - pytest --doctest-module -v
 
