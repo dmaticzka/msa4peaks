@@ -28,7 +28,7 @@ install:
   - conda config --add channels conda-forge
   - conda config --add channels bioconda
   # setup general python testing
-  - conda install flake8 pylint pytest scripttest matplotlib
+  - conda install flake8 pylint pytest scripttest matplotlib numpy
   # setup for prepare_graphprot_seqs.py
   #- conda install future argparse bedtools==2.25.0 pybedtools
 
