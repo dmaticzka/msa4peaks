@@ -3,7 +3,7 @@
 import argparse
 import matplotlib.pyplot as plt
 import numpy as np
-# import doctest
+
 
 information = """
 Calculates the mean_shift/peaks for the given dataset.
