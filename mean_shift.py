@@ -32,7 +32,7 @@ class Mean_Shift():
     >>> a = Mean_Shift(3)
     >>> x = [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 20, 21, 22, 23, 24]
     >>> a.peak(x)
-    {0: array(3.0), 1: array(11.0), 2: array(22.0)}
+    {0: array(3.), 1: array(11.), 2: array(22.)}
     """
 
     def __init__(self, bandwidth):
@@ -65,7 +65,7 @@ class Mean_Shift():
                     if abs(featuresset - centroid) < self.bandwidth:
                         Features.append(featuresset)
                 # provides the mean as new_centroid
-                new_centroid = np.mean(Features)
+                new_centroid = np.around(np.mean(Features), decimals=1)
                 new_centroids.append(new_centroid)
             # calculating unique centroids we have got
             unique_cent = sorted(set(new_centroids))
@@ -118,7 +118,7 @@ def main():
             line = line.strip().split()
             if line[0] == "chrX":
                 X.append(int(line[1]))
-    X = np.array(X)
+    X = np.around(X, decimals=1)
     centroids = clf.peak(X)
     print("No. of Clusters : ", len(centroids))
 
