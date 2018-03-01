@@ -34,8 +34,8 @@ class Mean_Shift():
     >>> a = Mean_Shift(3)
     >>> x = np.array([[1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 20, 21, 22, 23, 24]])
     >>> a.peak(x)
-    (array([[11.],
-           [ 3.],
+    (array([[3.],
+           [11.],
            [22.]]), 3)
     """
     def __init__(self, bandwidth):
@@ -109,5 +109,6 @@ def main():
     clf.plot_graph(cntr, no_clust, dt, Pars.graph)
     clf.output_file(cntr, Pars.output)
 
+    
 if __name__ == "__main__":
     main()
