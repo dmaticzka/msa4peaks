@@ -21,7 +21,7 @@ Output:
 * graph file, default name "graph.png".
 
 Example:
-- read file input.bed and write new peaks/centroids into output.bed
+- reads file input.bed and writes output.bedwith new peaks/centroids
 - mean_shift.py input.bed 200 -o data_output.bed -g output-graph.png
 
 """
