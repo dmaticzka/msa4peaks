@@ -19,7 +19,7 @@ Output:
 
 Example:
 - reads file input.bed and writes output.bedwith new peaks/centroids
-- mean_shift.py input.bed -b 3 -o data_output.bed 
+- mean_shift.py input.bed -b 3 -o data_output.bed
 
 """
 
